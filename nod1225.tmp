@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://c10enx0bd523e"]
+
+[ext_resource type="Script" path="res://Node2D.gd" id="1_uoff8"]
+[ext_resource type="Texture2D" uid="uid://bnyeia7xw77b8" path="res://icon.svg" id="2_0px1l"]
+[ext_resource type="Script" path="res://buneco.gd" id="2_6u1s7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_byny2"]
+size = Vector2(1151, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b2y2o"]
+size = Vector2(30, 31)
+
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("buneco")]
+script = ExtResource("1_uoff8")
+buneco = NodePath("buneco")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(577, 443)
+
+[node name="Chao" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_byny2")
+
+[node name="Chao2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(2, -469)
+shape = SubResource("RectangleShape2D_byny2")
+
+[node name="buneco" type="RigidBody2D" parent="."]
+position = Vector2(101, -57)
+script = ExtResource("2_6u1s7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="buneco"]
+position = Vector2(-1, -3.5)
+shape = SubResource("RectangleShape2D_b2y2o")
+
+[node name="Sprite2D" type="Sprite2D" parent="buneco"]
+position = Vector2(-1, -3)
+scale = Vector2(0.25, 0.242188)
+texture = ExtResource("2_0px1l")
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(582, 224)
+
+[node name="Label" type="Label" parent="Camera"]
+offset_left = 524.0
+offset_top = -318.0
+offset_right = 564.0
+offset_bottom = -295.0
+metadata/_edit_use_anchors_ = true

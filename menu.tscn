@@ -1,0 +1,67 @@
+[gd_scene load_steps=4 format=3 uid="uid://ct0e3ib0gmpp"]
+
+[ext_resource type="Script" path="res://menu.gd" id="1_l5muu"]
+[ext_resource type="Texture2D" uid="uid://cy8mj36yxxdxa" path="res://Age-of-Math-Functions-at-war-17-02-2024 (1).png" id="2_jqns8"]
+[ext_resource type="PackedScene" uid="uid://c8q54qiyld6wk" path="res://stick_men.tscn" id="3_5w1qn"]
+
+[node name="menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l5muu")
+
+[node name="escolhas" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 830.0
+offset_top = 277.0
+offset_right = 913.0
+offset_bottom = 378.0
+
+[node name="levels" type="Button" parent="escolhas"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Quit")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.509804, 0.509804, 0.509804, 1)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
+text = "Levels"
+
+[node name="Controles" type="Button" parent="escolhas"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.509804, 0.509804, 0.509804, 1)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
+text = "Controles"
+
+[node name="Quit" type="Button" parent="escolhas"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../levels")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.509804, 0.509804, 0.509804, 1)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
+text = "Sair"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(428, 151)
+scale = Vector2(0.775391, 0.724199)
+texture = ExtResource("2_jqns8")
+
+[node name="Node2D" parent="." instance=ExtResource("3_5w1qn")]
+position = Vector2(156, 405)
+
+[node name="Node2D2" parent="." instance=ExtResource("3_5w1qn")]
+position = Vector2(326, 400)
+scale = Vector2(2, 2)
+
+[node name="Node2D3" parent="." instance=ExtResource("3_5w1qn")]
+position = Vector2(453, 417)
+
+[connection signal="pressed" from="escolhas/levels" to="." method="_on_levels_pressed"]
+[connection signal="pressed" from="escolhas/Controles" to="." method="_on_controles_pressed"]
+[connection signal="pressed" from="escolhas/Quit" to="." method="_on_quit_pressed"]
