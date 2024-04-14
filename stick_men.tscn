@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://c8q54qiyld6wk"]
 
-[ext_resource type="Texture2D" uid="uid://ttosdme30o51" path="res://Full.png" id="1_j0a0h"]
+[ext_resource type="Texture2D" uid="uid://bc8cwtvau010s" path="res://img/zip/craftpix-net-483897-free-knight-character-sprites-pixel-art/Knight_2/Idle.png" id="1_u7goc"]
 
 [sub_resource type="Animation" id="Animation_frc51"]
 length = 0.001
@@ -122,10 +122,8 @@ _data = {
 position = Vector2(256, 144)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_j0a0h")
-hframes = 6
-vframes = 6
-frame = 12
+texture = ExtResource("1_u7goc")
+hframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
 libraries = {

@@ -10,6 +10,14 @@ var gold=0
 var y_force = 1
 var animation = null
 
+var ally_walk = preload('res://img/Run-Ally.png')
+var ally_death = preload('res://img/Dead-Ally.png')
+var ally_idle = preload('res://img/Idle-Ally.png')
+var ally_punch = preload('res://img/Attack-Ally.png')
+var enemy_walk = preload('res://img/Run-Enemy.png')
+var enemy_death = preload('res://img/Dead-Enemy.png')
+var enemy_idle = preload('res://img/Idle-Enemy.png')
+var enemy_punch = preload('res://img/Attack-Enemy.png')
 
 func _ready():
 	animation = $Sprite2D/AnimationPlayer
@@ -26,7 +34,8 @@ func _process(delta):
 	if p<0.01 or p == NAN:
 		if team == -1:
 			get_parent().gain_gold(gold)
-		animation.play('death')
+		check_animation(team, 'death')
+		#animation.play('death')
 		await get_tree().create_timer(.1).timeout
 		queue_free()
 
@@ -36,7 +45,11 @@ func _physics_process(delta):
 		$Sprite2D.flip_h = team!=1
 		#$Sprite2D.scale = Vector2(log(p)+1, log(p)+1)
 		if !hit && !idle:
-			animation.play('walk')
+			check_animation(team, 'walk')
+			#if team == 1:
+				#animation.play('walk')
+			#else:
+				#animation.play('walk_enemy')
 		var who_colided = move_and_collide(Vector2(SPEED *delta * team,0))
 		if who_colided != null and !hit:
 			who_colided = who_colided.get_collider()
@@ -44,7 +57,8 @@ func _physics_process(delta):
 				hit = !hit
 				#print("power: ",p,' colided with:',who_colided.get_power())
 				var a = who_colided.get_power()
-				animation.play('punch')
+				check_animation(team, 'punch')
+				#animation.play('punch')
 				$puntch_1.play()
 				await get_tree().create_timer(.1).timeout
 				take_damage(a)
@@ -52,12 +66,14 @@ func _physics_process(delta):
 				hit = !hit
 				#print("done")
 			elif who_colided in get_tree().get_nodes_in_group(str(-1*team)+'B'):
-				animation.play('punch')
+				check_animation(team, 'punch')
+				#animation.play('punch')
 				$punch_2.play()
 				who_colided.take_damage(p)
 				take_damage(p,false)
 			else:
-				animation.play('idle')
+				check_animation(team, 'idle')
+				#animation.play('idle')
 
 
 func setup(t:int, p, poss_vect:Vector2,gold_cost=null):
@@ -65,6 +81,9 @@ func setup(t:int, p, poss_vect:Vector2,gold_cost=null):
 	if gold_cost != null:
 		gold = gold_cost
 	team = t
+	if team != 1:
+		$Sprite2D.texture = enemy_walk
+		$Sprite2D.hframes = 6
 	add_to_group(str(t))
 	global_position = poss_vect
 	var l = get_node("Label")
@@ -103,7 +122,8 @@ func take_damage(enemy_power,gold_gain=true):
 		if team == -1 and gold_gain:
 			get_parent().gain_gold(gold)
 		get_node('CollisionShape2D').queue_free()
-		animation.play('death')
+		check_animation(team, 'death')
+		#animation.play('death')
 		await get_tree().create_timer(.1).timeout
 		queue_free()
 	else:
@@ -112,3 +132,41 @@ func take_damage(enemy_power,gold_gain=true):
 
 func get_power():
 	return power[0] + x*power[1] + power[2] * (1/(log(x+1))) + power[3] * 4**x + power[4] * (sin(5*(x+.47))+0.05)
+
+func check_animation(team:int, mode:String):
+	if mode == 'walk':
+		if team == 1:
+			$Sprite2D.texture = ally_walk
+			$Sprite2D.hframes = 7
+			animation.play('walk')
+		else:
+			$Sprite2D.texture = enemy_walk
+			$Sprite2D.hframes = 6
+			animation.play('walk_enemy')
+	elif mode == 'death':
+		if team == 1:
+			$Sprite2D.texture = ally_death
+			$Sprite2D.hframes = 6
+			animation.play('death')
+		else:
+			$Sprite2D.texture = enemy_death
+			$Sprite2D.hframes = 4
+			animation.play('death_enemy')
+	elif mode == 'idle':
+		if team == 1:
+			$Sprite2D.texture = ally_idle
+			$Sprite2D.hframes = 4
+			animation.play('idle')
+		else:
+			$Sprite2D.texture = enemy_idle
+			$Sprite2D.hframes = 5
+			animation.play('idle_enemy')
+	elif mode == 'punch':
+		if team == 1:
+			$Sprite2D.texture = ally_punch
+			$Sprite2D.hframes = 5
+			animation.play('punch')
+		else:
+			$Sprite2D.texture = enemy_punch
+			$Sprite2D.hframes = 4
+			animation.play('punch_enemy')

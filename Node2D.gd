@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var buneco:RigidBody2D
+@export var enemy:RigidBody2D
 @export var base:StaticBody2D
 @export var base_inimiga:StaticBody2D
 var gold_cost = [50,100,80,300,200]
@@ -55,7 +56,7 @@ func _process(delta):
 		enamy_upgrades_timer+= delta
 		spawn_enamy_timer+= delta
 		gold += gold_gain * delta
-		get_node("Camera/Label").text = 'gold: '+str(round(gold))
+		get_node("Camera/Label").text = str(round(gold))
 		#var po = get_node("Camera/Label")
 		#for a in range(5):
 			#po.text+='\n'+str(cd_upgrades[a])
@@ -140,10 +141,11 @@ func _on_button_pressed():
 			
 			
 func create(team,power,gold=null):
-		var b = buneco.duplicate()
-		b.DUPLICATE_SCRIPTS
-		b.setup(team,power,Vector2(POS_X[ (team-1)/2 *-1 ],POS_Y),gold)
-		add_child(b)
+	var b;
+	b = buneco.duplicate()
+	b.DUPLICATE_SCRIPTS
+	b.setup(team,power,Vector2(POS_X[ (team-1)/2 *-1 ],POS_Y),gold)
+	add_child(b)
 		#print(b,'  team ',team)
 
 

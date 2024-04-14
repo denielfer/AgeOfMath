@@ -1,12 +1,16 @@
-[gd_scene load_steps=17 format=3 uid="uid://c10enx0bd523e"]
+[gd_scene load_steps=25 format=3 uid="uid://c10enx0bd523e"]
 
 [ext_resource type="Script" path="res://Node2D.gd" id="1_uoff8"]
-[ext_resource type="Texture2D" uid="uid://bnyeia7xw77b8" path="res://icon.svg" id="2_0px1l"]
+[ext_resource type="Texture2D" uid="uid://dmpmxr0x0ep6u" path="res://img/zip/craftpix-234566-free-castle-2d-game-assets/png/Background.png" id="2_5hwwm"]
 [ext_resource type="Script" path="res://buneco.gd" id="2_6u1s7"]
-[ext_resource type="Texture2D" uid="uid://ttosdme30o51" path="res://Full.png" id="3_75ovt"]
 [ext_resource type="AudioStream" uid="uid://cmuvrn3usoq6" path="res://punch_1.wav" id="4_sk06c"]
+[ext_resource type="Texture2D" uid="uid://bc3ayr7u4njkf" path="res://img/Run-Ally.png" id="4_t114w"]
 [ext_resource type="Script" path="res://enamy_base.gd" id="5_hspku"]
 [ext_resource type="AudioStream" uid="uid://cg2rjfod5g42s" path="res://punch_2.wav" id="5_lmwed"]
+[ext_resource type="Texture2D" uid="uid://ctgug25i3y52b" path="res://img/coins.png" id="7_n8nf8"]
+[ext_resource type="Texture2D" uid="uid://bbmwg3kecd3xc" path="res://img/Castle-ally.png" id="8_2miat"]
+[ext_resource type="FontFile" uid="uid://kgaveklay1s2" path="res://img/Sofija.ttf" id="8_3cew6"]
+[ext_resource type="Texture2D" uid="uid://0i61lpvkrbbk" path="res://img/Castle-enemies.png" id="9_ows0u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_byny2"]
 size = Vector2(1151, 26)
@@ -15,10 +19,11 @@ size = Vector2(1151, 26)
 height = 93.985
 
 [sub_resource type="Animation" id="Animation_frc51"]
-length = 0.001
+loop_mode = 1
+step = 0.15
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath(".:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -33,46 +38,47 @@ tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/path = NodePath(".:frame")
 tracks/1/interp = 1
-tracks/1/loop_wrap = true
+tracks/1/loop_wrap = false
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [12]
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 6]
 }
 
 [sub_resource type="Animation" id="Animation_apgw1"]
 resource_name = "death"
-length = 0.18
+length = 0.4
+loop_mode = 1
+step = 0.12
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.36),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 5]
+}
+
+[sub_resource type="Animation" id="Animation_164q0"]
+resource_name = "idle"
+length = 0.33
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
-tracks/0/loop_wrap = true
+tracks/0/loop_wrap = false
 tracks/0/keys = {
-"times": PackedFloat32Array(0.0024994, 0.0297794, 0.0601261, 0.0898006, 0.119505, 0.150205),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [28, 29, 30, 31, 32, 33]
-}
-
-[sub_resource type="Animation" id="Animation_164q0"]
-resource_name = "idle"
-length = 0.3
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0592632, 0.121827, 0.180279, 0.220679, 0.259585, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [Vector2i(0, 0), Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0), Vector2i(4, 0), Vector2i(5, 0)]
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2i(0, 0), 3]
 }
 
 [sub_resource type="Animation" id="Animation_63u5s"]
@@ -84,21 +90,20 @@ tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
-tracks/0/loop_wrap = true
+tracks/0/loop_wrap = false
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0303933, 0.0605057, 0.0901293, 0.12006, 0.150261, 0.180524, 0.210117, 0.240739, 0.270305, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [15, 16, 17, 18, 19, 19, 20, 21, 22, 23, 26]
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 4]
 }
 
 [sub_resource type="Animation" id="Animation_dotgx"]
 resource_name = "walk"
-length = 0.2525
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath(".:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -113,21 +118,106 @@ tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/path = NodePath(".:frame")
 tracks/1/interp = 1
-tracks/1/loop_wrap = true
+tracks/1/loop_wrap = false
 tracks/1/keys = {
-"times": PackedFloat32Array(0.239932),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 6]
+}
+
+[sub_resource type="Animation" id="Animation_wgflj"]
+resource_name = "walk_enemy"
+loop_mode = 1
+step = 0.11
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0301028, 0.0602056, 0.0901707, 0.120162, 0.149666, 0.179741, 0.209453),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [14]
+"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1), Vector2i(5, 1), Vector2i(0, 2), Vector2i(1, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.99),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 5]
+}
+
+[sub_resource type="Animation" id="Animation_qd80g"]
+resource_name = "death_enemy"
+length = 0.4
+loop_mode = 1
+step = 0.12
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.36),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 3]
+}
+
+[sub_resource type="Animation" id="Animation_sujjp"]
+resource_name = "idle_enemy"
+length = 0.33
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2i(0, 0), 4]
+}
+
+[sub_resource type="Animation" id="Animation_hkbw7"]
+resource_name = "punch_enemy"
+length = 0.33
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 3]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fg5v4"]
 _data = {
 "RESET": SubResource("Animation_frc51"),
 "death": SubResource("Animation_apgw1"),
+"death_enemy": SubResource("Animation_qd80g"),
 "idle": SubResource("Animation_164q0"),
+"idle_enemy": SubResource("Animation_sujjp"),
 "punch": SubResource("Animation_63u5s"),
-"walk": SubResource("Animation_dotgx")
+"punch_enemy": SubResource("Animation_hkbw7"),
+"walk": SubResource("Animation_dotgx"),
+"walk_enemy": SubResource("Animation_wgflj")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lel2p"]
@@ -138,6 +228,12 @@ script = ExtResource("1_uoff8")
 buneco = NodePath("buneco")
 base = NodePath("base")
 base_inimiga = NodePath("enamy_base")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("2_5hwwm")
+expand_mode = 1
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(577, 443)
@@ -182,10 +278,8 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="buneco"]
-texture = ExtResource("3_75ovt")
-hframes = 6
-vframes = 6
-frame = 12
+texture = ExtResource("4_t114w")
+hframes = 7
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="buneco/Sprite2D"]
 libraries = {
@@ -202,11 +296,19 @@ stream = ExtResource("5_lmwed")
 position = Vector2(576, 320)
 enabled = false
 
+[node name="Sprite2D" type="Sprite2D" parent="Camera"]
+position = Vector2(423, -301)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("7_n8nf8")
+
 [node name="Label" type="Label" parent="Camera"]
 offset_left = 448.0
-offset_top = -324.0
+offset_top = -316.0
 offset_right = 488.0
-offset_bottom = -301.0
+offset_bottom = -285.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_3cew6")
+theme_override_font_sizes/font_size = 30
 metadata/_edit_use_anchors_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Camera"]
@@ -246,7 +348,7 @@ text_direction = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="base" type="StaticBody2D" parent="."]
-position = Vector2(72, 360)
+position = Vector2(108, 360)
 script = ExtResource("5_hspku")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="base"]
@@ -256,7 +358,10 @@ debug_color = Color(0, 0.65098, 0.0745098, 0.419608)
 
 [node name="Sprite2D" type="Sprite2D" parent="base"]
 position = Vector2(-2, 2)
-texture = ExtResource("2_0px1l")
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("8_2miat")
+hframes = 3
+frame = 2
 
 [node name="Label" type="Label" parent="base"]
 offset_left = -65.0
@@ -274,16 +379,19 @@ offset_bottom = 168.0
 metadata/_edit_use_anchors_ = true
 
 [node name="enamy_base" type="StaticBody2D" parent="."]
-position = Vector2(1090, 365)
+position = Vector2(1045, 365)
 script = ExtResource("5_hspku")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="enamy_base"]
-position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_lel2p")
 debug_color = Color(0.988235, 0, 0.317647, 0.419608)
 
 [node name="Sprite2D" type="Sprite2D" parent="enamy_base"]
-texture = ExtResource("2_0px1l")
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("9_ows0u")
+flip_h = true
+hframes = 3
+frame = 2
 
 [node name="Label" type="Label" parent="enamy_base"]
 offset_left = -65.0

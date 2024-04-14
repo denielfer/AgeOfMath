@@ -1,8 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://ct0e3ib0gmpp"]
+[gd_scene load_steps=8 format=3 uid="uid://ct0e3ib0gmpp"]
 
 [ext_resource type="Script" path="res://menu.gd" id="1_l5muu"]
+[ext_resource type="Texture2D" uid="uid://4fe4oyqtn0iq" path="res://img/castle bridge.png" id="2_i8o56"]
 [ext_resource type="Texture2D" uid="uid://cy8mj36yxxdxa" path="res://Age-of-Math-Functions-at-war-17-02-2024 (1).png" id="2_jqns8"]
 [ext_resource type="PackedScene" uid="uid://c8q54qiyld6wk" path="res://stick_men.tscn" id="3_5w1qn"]
+[ext_resource type="FontFile" uid="uid://kgaveklay1s2" path="res://img/Sofija.ttf" id="3_claqd"]
+[ext_resource type="StyleBox" uid="uid://cwk08ju363rrl" path="res://bottom_style.tres" id="4_vtybw"]
+[ext_resource type="PackedScene" uid="uid://xgvehubjttch" path="res://enemy_men.tscn" id="5_a8s8k"]
 
 [node name="menu" type="Control"]
 layout_mode = 3
@@ -13,54 +17,106 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_l5muu")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("2_i8o56")
+expand_mode = 1
+
 [node name="escolhas" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-offset_left = 830.0
-offset_top = 277.0
-offset_right = 913.0
-offset_bottom = 378.0
+offset_left = 818.0
+offset_top = 84.0
+offset_right = 1034.0
+offset_bottom = 290.0
 
 [node name="levels" type="Button" parent="escolhas"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Quit")
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.768627, 0.768627, 0.768627, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(0.509804, 0.509804, 0.509804, 1)
-theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
-text = "Levels"
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 0)
+theme_override_fonts/font = ExtResource("3_claqd")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = ExtResource("4_vtybw")
+theme_override_styles/hover = ExtResource("4_vtybw")
+theme_override_styles/pressed = ExtResource("4_vtybw")
+text = "Jogar"
 
 [node name="Controles" type="Button" parent="escolhas"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.768627, 0.768627, 0.768627, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(0.509804, 0.509804, 0.509804, 1)
 theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
+theme_override_fonts/font = ExtResource("3_claqd")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = ExtResource("4_vtybw")
+theme_override_styles/hover = ExtResource("4_vtybw")
 text = "Controles"
 
 [node name="Quit" type="Button" parent="escolhas"]
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../levels")
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.768627, 0.768627, 0.768627, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(0.509804, 0.509804, 0.509804, 1)
 theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
+theme_override_fonts/font = ExtResource("3_claqd")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = ExtResource("4_vtybw")
+theme_override_styles/hover = ExtResource("4_vtybw")
 text = "Sair"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(428, 151)
+visible = false
+position = Vector2(398, 171)
 scale = Vector2(0.775391, 0.724199)
 texture = ExtResource("2_jqns8")
 
 [node name="Node2D" parent="." instance=ExtResource("3_5w1qn")]
-position = Vector2(156, 405)
+position = Vector2(167, 350)
+scale = Vector2(1.5, 1.5)
 
 [node name="Node2D2" parent="." instance=ExtResource("3_5w1qn")]
 position = Vector2(326, 400)
 scale = Vector2(2, 2)
 
 [node name="Node2D3" parent="." instance=ExtResource("3_5w1qn")]
-position = Vector2(453, 417)
+position = Vector2(462, 360)
+scale = Vector2(1.5, 1.5)
+
+[node name="Node2D4" parent="." instance=ExtResource("5_a8s8k")]
+position = Vector2(751, 357)
+scale = Vector2(1.5, 1.5)
+
+[node name="Node2D5" parent="." instance=ExtResource("5_a8s8k")]
+position = Vector2(911, 389)
+scale = Vector2(2, 2)
+
+[node name="Node2D6" parent="." instance=ExtResource("5_a8s8k")]
+position = Vector2(1070, 344)
+scale = Vector2(1.5, 1.5)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 93.0
+offset_top = 129.0
+offset_right = 604.0
+offset_bottom = 292.0
+rotation = -0.174533
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.407843, 0.407843, 0.407843, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_fonts/font = ExtResource("3_claqd")
+theme_override_font_sizes/font_size = 80
+text = "AGE OF MATH
+FUNCTIONS AT WAR"
+horizontal_alignment = 1
 
 [connection signal="pressed" from="escolhas/levels" to="." method="_on_levels_pressed"]
 [connection signal="pressed" from="escolhas/Controles" to="." method="_on_controles_pressed"]

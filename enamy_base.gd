@@ -4,11 +4,11 @@ var team
 var life
 var power = [1,0,0,0,0]
 var started = false
+var full_life
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_node('Label').text = ""
-
 
 func _process(delta):
 	if started:
@@ -45,10 +45,15 @@ func setup(team_in,life_in:int=100):
 	started = true
 	add_to_group(str(team)+'B')
 	life = life_in
+	full_life = life
 
 func take_damage(enemy_power):
 	print(life,'->',life - enemy_power)
 	life = life - enemy_power
+	if life/full_life < 0.67 and life/full_life > 0.33:
+		$Sprite2D.frame = 1
+	elif life/full_life < 0.34 and life/full_life > 0:
+		$Sprite2D.frame = 0
 
 func update(n:int,value:int):
 	power[n]+=value
