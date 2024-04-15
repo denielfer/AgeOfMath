@@ -35,7 +35,6 @@ func _process(delta):
 		if team == -1:
 			get_parent().gain_gold(gold)
 		check_animation(team, 'death')
-		#animation.play('death')
 		await get_tree().create_timer(.1).timeout
 		queue_free()
 
@@ -46,10 +45,6 @@ func _physics_process(delta):
 		#$Sprite2D.scale = Vector2(log(p)+1, log(p)+1)
 		if !hit && !idle:
 			check_animation(team, 'walk')
-			#if team == 1:
-				#animation.play('walk')
-			#else:
-				#animation.play('walk_enemy')
 		var who_colided = move_and_collide(Vector2(SPEED *delta * team,0))
 		if who_colided != null and !hit:
 			who_colided = who_colided.get_collider()
@@ -58,7 +53,6 @@ func _physics_process(delta):
 				#print("power: ",p,' colided with:',who_colided.get_power())
 				var a = who_colided.get_power()
 				check_animation(team, 'punch')
-				#animation.play('punch')
 				$puntch_1.play()
 				await get_tree().create_timer(.1).timeout
 				take_damage(a)
@@ -67,14 +61,11 @@ func _physics_process(delta):
 				#print("done")
 			elif who_colided in get_tree().get_nodes_in_group(str(-1*team)+'B'):
 				check_animation(team, 'punch')
-				#animation.play('punch')
 				$punch_2.play()
 				who_colided.take_damage(p)
 				take_damage(p,false)
 			else:
 				check_animation(team, 'idle')
-				#animation.play('idle')
-
 
 func setup(t:int, p, poss_vect:Vector2,gold_cost=null):
 	power = p

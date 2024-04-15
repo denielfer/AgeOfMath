@@ -1,8 +1,8 @@
 [gd_scene load_steps=25 format=3 uid="uid://c10enx0bd523e"]
 
 [ext_resource type="Script" path="res://Node2D.gd" id="1_uoff8"]
-[ext_resource type="Texture2D" uid="uid://dmpmxr0x0ep6u" path="res://img/zip/craftpix-234566-free-castle-2d-game-assets/png/Background.png" id="2_5hwwm"]
 [ext_resource type="Script" path="res://buneco.gd" id="2_6u1s7"]
+[ext_resource type="Texture2D" uid="uid://cv8bfcy3x1hjo" path="res://img/Background.png" id="2_kseqy"]
 [ext_resource type="AudioStream" uid="uid://cmuvrn3usoq6" path="res://punch_1.wav" id="4_sk06c"]
 [ext_resource type="Texture2D" uid="uid://bc3ayr7u4njkf" path="res://img/Run-Ally.png" id="4_t114w"]
 [ext_resource type="Script" path="res://enamy_base.gd" id="5_hspku"]
@@ -64,6 +64,24 @@ tracks/0/keys = {
 "values": [0, 5]
 }
 
+[sub_resource type="Animation" id="Animation_qd80g"]
+resource_name = "death_enemy"
+length = 0.4
+loop_mode = 1
+step = 0.12
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.36),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 3]
+}
+
 [sub_resource type="Animation" id="Animation_164q0"]
 resource_name = "idle"
 length = 0.33
@@ -81,6 +99,23 @@ tracks/0/keys = {
 "values": [Vector2i(0, 0), 3]
 }
 
+[sub_resource type="Animation" id="Animation_sujjp"]
+resource_name = "idle_enemy"
+length = 0.33
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2i(0, 0), 4]
+}
+
 [sub_resource type="Animation" id="Animation_63u5s"]
 resource_name = "punch"
 length = 0.33
@@ -96,6 +131,23 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0, 4]
+}
+
+[sub_resource type="Animation" id="Animation_hkbw7"]
+resource_name = "punch_enemy"
+length = 0.33
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 3]
 }
 
 [sub_resource type="Animation" id="Animation_dotgx"]
@@ -155,58 +207,6 @@ tracks/1/keys = {
 "values": [0, 5]
 }
 
-[sub_resource type="Animation" id="Animation_qd80g"]
-resource_name = "death_enemy"
-length = 0.4
-loop_mode = 1
-step = 0.12
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.36),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0, 3]
-}
-
-[sub_resource type="Animation" id="Animation_sujjp"]
-resource_name = "idle_enemy"
-length = 0.33
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2i(0, 0), 4]
-}
-
-[sub_resource type="Animation" id="Animation_hkbw7"]
-resource_name = "punch_enemy"
-length = 0.33
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0, 3]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fg5v4"]
 _data = {
 "RESET": SubResource("Animation_frc51"),
@@ -232,7 +232,7 @@ base_inimiga = NodePath("enamy_base")
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_right = 1152.0
 offset_bottom = 648.0
-texture = ExtResource("2_5hwwm")
+texture = ExtResource("2_kseqy")
 expand_mode = 1
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]

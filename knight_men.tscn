@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://ttdvg0utyff0"]
 
-[ext_resource type="Texture2D" path="res://img/zip/craftpix-net-483897-free-knight-character-sprites-pixel-art/Knight_1/Run.png" id="1_ng3op"]
+[ext_resource type="Texture2D" uid="uid://bc3ayr7u4njkf" path="res://img/Run-Ally.png" id="1_ng3op"]
 
 [sub_resource type="Animation" id="Animation_frc51"]
 length = 1.4
