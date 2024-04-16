@@ -1,12 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://c2eu8oiisidbt"]
+[gd_scene load_steps=10 format=3 uid="uid://c2eu8oiisidbt"]
 
 [ext_resource type="Script" path="res://level selection.gd" id="1_ncbli"]
 [ext_resource type="PackedScene" uid="uid://c10enx0bd523e" path="res://node_2d.tscn" id="1_rtjes"]
 [ext_resource type="Texture2D" uid="uid://b7duchwoy74yk" path="res://img/Captura de tela 2024-01-03 222340.png" id="2_lb23t"]
 [ext_resource type="Texture2D" uid="uid://cmwilghd6kbdh" path="res://img/Captura de tela 2024-01-03 225339.png" id="3_2aesn"]
 [ext_resource type="Texture2D" uid="uid://c6mlgwi1iq1bp" path="res://img/Captura de tela 2024-01-03 225911.png" id="4_8exl3"]
+[ext_resource type="FontFile" uid="uid://kgaveklay1s2" path="res://img/Sofija.ttf" id="4_x4xyx"]
 [ext_resource type="Texture2D" uid="uid://3gv2x3qfeddv" path="res://img/Captura de tela 2024-01-03 230808.png" id="5_7l2ob"]
 [ext_resource type="Texture2D" uid="uid://c6niqnr4q1k7u" path="res://img/Captura de tela 2024-01-03 232224.png" id="6_ksjlf"]
+[ext_resource type="StyleBox" uid="uid://cwk08ju363rrl" path="res://bottom_style.tres" id="9_8tk41"]
 
 [node name="levels" type="Node2D"]
 script = ExtResource("1_ncbli")
@@ -40,9 +42,10 @@ anchors_preset = -1
 anchor_left = -0.25
 anchor_right = -0.25
 offset_left = 160.0
-offset_top = 640.0
+offset_top = 690.0
 offset_right = 800.0
-offset_bottom = 840.0
+offset_bottom = 890.0
+theme_override_fonts/font = ExtResource("4_x4xyx")
 theme_override_font_sizes/font_size = 130
 text = "Constante"
 horizontal_alignment = 1
@@ -63,9 +66,10 @@ anchors_preset = -1
 anchor_left = -0.25
 anchor_right = -0.25
 offset_left = 160.0
-offset_top = 640.0
+offset_top = 690.0
 offset_right = 800.0
-offset_bottom = 840.0
+offset_bottom = 890.0
+theme_override_fonts/font = ExtResource("4_x4xyx")
 theme_override_font_sizes/font_size = 130
 text = "Linear"
 horizontal_alignment = 1
@@ -86,9 +90,10 @@ anchors_preset = -1
 anchor_left = -0.25
 anchor_right = -0.25
 offset_left = 160.0
-offset_top = 640.0
+offset_top = 690.0
 offset_right = 800.0
-offset_bottom = 840.0
+offset_bottom = 890.0
+theme_override_fonts/font = ExtResource("4_x4xyx")
 theme_override_font_sizes/font_size = 130
 text = "Log"
 horizontal_alignment = 1
@@ -109,9 +114,10 @@ anchors_preset = -1
 anchor_left = -0.25
 anchor_right = -0.25
 offset_left = 160.0
-offset_top = 640.0
+offset_top = 690.0
 offset_right = 800.0
-offset_bottom = 840.0
+offset_bottom = 890.0
+theme_override_fonts/font = ExtResource("4_x4xyx")
 theme_override_font_sizes/font_size = 130
 text = "Exp"
 horizontal_alignment = 1
@@ -133,21 +139,36 @@ anchors_preset = -1
 anchor_left = -0.25
 anchor_right = -0.25
 offset_left = 160.0
-offset_top = 640.0
+offset_top = 690.0
 offset_right = 800.0
-offset_bottom = 840.0
+offset_bottom = 890.0
+theme_override_fonts/font = ExtResource("4_x4xyx")
 theme_override_font_sizes/font_size = 130
 text = "Seinoidal"
 horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="Node"]
-offset_left = 544.0
-offset_top = 320.0
-offset_right = 609.0
-offset_bottom = 351.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -59.0
+offset_top = -33.0
+offset_right = 59.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
 focus_neighbor_top = NodePath("../ColorRect/Button")
 focus_neighbor_bottom = NodePath("../ColorRect/Button5")
-text = "  Menu "
+theme_override_colors/font_color = Color(0.768627, 0.768627, 0.768627, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.509804, 0.509804, 0.509804, 1)
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 0)
+theme_override_fonts/font = ExtResource("4_x4xyx")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = ExtResource("9_8tk41")
+text = "Menu"
 
 [connection signal="pressed" from="Node/ColorRect/Button" to="." method="_on_button1_pressed"]
 [connection signal="pressed" from="Node/ColorRect/Button2" to="." method="_on_button_2_pressed"]

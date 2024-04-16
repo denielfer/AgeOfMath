@@ -1,8 +1,9 @@
-[gd_scene load_steps=25 format=3 uid="uid://c10enx0bd523e"]
+[gd_scene load_steps=26 format=3 uid="uid://c10enx0bd523e"]
 
 [ext_resource type="Script" path="res://Node2D.gd" id="1_uoff8"]
 [ext_resource type="Script" path="res://buneco.gd" id="2_6u1s7"]
 [ext_resource type="Texture2D" uid="uid://cv8bfcy3x1hjo" path="res://img/Background.png" id="2_kseqy"]
+[ext_resource type="PackedScene" uid="uid://b0u5c50qjem5j" path="res://win_screen.tscn" id="2_wanjh"]
 [ext_resource type="AudioStream" uid="uid://cmuvrn3usoq6" path="res://punch_1.wav" id="4_sk06c"]
 [ext_resource type="Texture2D" uid="uid://bc3ayr7u4njkf" path="res://img/Run-Ally.png" id="4_t114w"]
 [ext_resource type="Script" path="res://enamy_base.gd" id="5_hspku"]
@@ -229,6 +230,15 @@ buneco = NodePath("buneco")
 base = NodePath("base")
 base_inimiga = NodePath("enamy_base")
 
+[node name="Window" type="Window" parent="."]
+initial_position = 2
+size = Vector2i(500, 300)
+visible = false
+content_scale_mode = 1
+content_scale_aspect = 4
+
+[node name="win_screen" parent="Window" instance=ExtResource("2_wanjh")]
+
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_right = 1152.0
 offset_bottom = 648.0
@@ -265,14 +275,18 @@ offset_top = -131.0
 offset_right = 27.0
 offset_bottom = 68.0
 scale = Vector2(0.706524, 0.560067)
+theme_override_colors/font_color = Color(0.0745098, 0.0745098, 0.0745098, 1)
+theme_override_fonts/font = ExtResource("8_3cew6")
 vertical_alignment = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="dados" type="Label" parent="buneco"]
 offset_left = -15.0
-offset_top = 12.0
+offset_top = 46.9944
 offset_right = 12.0
-offset_bottom = 35.0
+offset_bottom = 69.9944
+theme_override_colors/font_color = Color(0.0745098, 0.0745098, 0.0745098, 1)
+theme_override_fonts/font = ExtResource("8_3cew6")
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
@@ -319,31 +333,36 @@ offset_bottom = -280.0
 
 [node name="const_bnt" type="Button" parent="Camera/HBoxContainer"]
 layout_mode = 2
-text = "          1         "
+theme_override_fonts/font = ExtResource("8_3cew6")
+text = "       1       "
 text_direction = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="lin_btn2" type="Button" parent="Camera/HBoxContainer"]
 layout_mode = 2
-text = "          X         "
+theme_override_fonts/font = ExtResource("8_3cew6")
+text = "       X       "
 text_direction = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="log_btn3" type="Button" parent="Camera/HBoxContainer"]
 layout_mode = 2
-text = "    log(x)   "
+theme_override_fonts/font = ExtResource("8_3cew6")
+text = "     log(x)    "
 text_direction = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="exp_btn4" type="Button" parent="Camera/HBoxContainer"]
 layout_mode = 2
-text = "        4^x       "
+theme_override_fonts/font = ExtResource("8_3cew6")
+text = "      4^x      "
 text_direction = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="sin_btn5" type="Button" parent="Camera/HBoxContainer"]
 layout_mode = 2
-text = "       sin(x)    "
+theme_override_fonts/font = ExtResource("8_3cew6")
+text = "     sin(x)    "
 text_direction = 1
 metadata/_edit_use_anchors_ = true
 
@@ -357,25 +376,32 @@ shape = SubResource("RectangleShape2D_lel2p")
 debug_color = Color(0, 0.65098, 0.0745098, 0.419608)
 
 [node name="Sprite2D" type="Sprite2D" parent="base"]
-position = Vector2(-2, 2)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("8_2miat")
 hframes = 3
 frame = 2
 
 [node name="Label" type="Label" parent="base"]
-offset_left = -65.0
-offset_top = -88.0
-offset_right = -25.0
-offset_bottom = -65.0
-scale = Vector2(3.24, 1)
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_top = -120.5
+offset_right = 1.0
+offset_bottom = -97.5
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.0745098, 0.0745098, 0.0745098, 1)
+theme_override_fonts/font = ExtResource("8_3cew6")
+theme_override_font_sizes/font_size = 40
 metadata/_edit_use_anchors_ = true
 
 [node name="Label2" type="Label" parent="base"]
-offset_left = -64.0
-offset_top = 96.0
-offset_right = 64.0
-offset_bottom = 168.0
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_top = 99.5
+offset_right = 1.0
+offset_bottom = 122.5
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.0745098, 0.0745098, 0.0745098, 1)
+theme_override_fonts/font = ExtResource("8_3cew6")
 metadata/_edit_use_anchors_ = true
 
 [node name="enamy_base" type="StaticBody2D" parent="."]
@@ -394,17 +420,31 @@ hframes = 3
 frame = 2
 
 [node name="Label" type="Label" parent="enamy_base"]
-offset_left = -65.0
-offset_top = -89.0
-offset_right = -25.0
-offset_bottom = -66.0
-scale = Vector2(3.24, 1)
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -120.5
+offset_right = 1.0
+offset_bottom = -97.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.0745098, 0.0745098, 0.0745098, 1)
+theme_override_fonts/font = ExtResource("8_3cew6")
+theme_override_font_sizes/font_size = 40
 
 [node name="Label2" type="Label" parent="enamy_base"]
-offset_left = -66.0
-offset_top = 91.0
-offset_right = 62.0
-offset_bottom = 163.0
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 99.5
+offset_bottom = 122.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.0745098, 0.0745098, 0.0745098, 1)
+theme_override_fonts/font = ExtResource("8_3cew6")
 
 [connection signal="pressed" from="Camera/HBoxContainer/const_bnt" to="." method="_on_const_bnt_pressed"]
 [connection signal="pressed" from="Camera/HBoxContainer/lin_btn2" to="." method="_on_lin_btn_2_pressed"]
