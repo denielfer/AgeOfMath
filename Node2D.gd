@@ -66,7 +66,7 @@ func _process(delta):
 		#po.text += '\n'+str(spawn_time-spawn_enamy_timer)
 		cd += delta
 		cd_u += delta
-		if(Input.is_key_pressed(KEY_S) and gold > 100 and cd > CD):
+		if(Input.is_key_pressed(KEY_SPACE) and gold > 100 and cd > CD):
 			gold -= 100
 			create(1,base.power.duplicate())
 			cd = 0
